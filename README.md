@@ -182,6 +182,10 @@ bin/docker/deploy -e production
 
 Utilize o [wscat](https://www.npmjs.com/package/wscat).
 
+```shell
+npm i -g wscat
+```
+
 Abra um shell e execute:
 
 ```shell
@@ -198,17 +202,6 @@ Connected (press CTRL+C to quit)
 < {"action":"message","message":"Olá"}
 > {"action": "message", "message": "Mundo"}
 ```
-
-
-## Middlewares
-
-Sugestão de outros **middlewares** para serem utilizados no projeto:
-
-- [koa-helmet](https://github.com/venables/koa-helmet)
-- [@koa/multer](https://github.com/koajs/multer)
-- [koa-ctx-cache-control](https://github.com/koajs/ctx-cache-control)
-- [koa-ratelimit](https://github.com/koajs/ratelimit)
-- [koa-static](https://github.com/koajs/static)
 
 
 ## License
