@@ -1,0 +1,15 @@
+stages:
+  - test
+
+test:
+  stage: test
+  image: lagden/docker_compose:2.0.1_docker_20.10.11
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay2
+  services:
+    - docker:20.10.11-dind
+  script:
+    - docker network create network_graylog
+    - bin/docker/test -b
+  coverage: '/Statements\s*:\s*([^%]+)/'

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# envs
+rm .env-*
+
+# bin
+rm -rf bin
+
+# docker
+rm .dockerignore
+rm docker-compose*
+rm Dockerfile*
+
+# node
+rm -rf \
+	node_modules \
+	.yarn \
+	.pnp.*
+
+exit 0
