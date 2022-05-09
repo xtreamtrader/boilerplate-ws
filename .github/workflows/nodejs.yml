@@ -23,13 +23,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
 
       - name: Update yarn
-        run: yarn set version stable
+        run: yarn set version 3.1.0
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn install
 
       - name: Run test
         run: npm test
