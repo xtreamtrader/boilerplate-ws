@@ -4,8 +4,14 @@ docker-compose-*.yml
 public
 resource
 
+# Boilerplate
+_cleanup
+
 # node
 node_modules
+
+# lock files
+# *.lock
 
 # Yarn
 .yarn/*
