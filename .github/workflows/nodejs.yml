@@ -29,7 +29,7 @@ jobs:
         run: yarn set version stable
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --immutable
 
       - name: Run test
         run: npm test
