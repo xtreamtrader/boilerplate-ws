@@ -5,8 +5,8 @@
 
 [ci-img]:          https://github.com/lagden/boilerplate-ws/actions/workflows/nodejs.yml/badge.svg
 [ci]:              https://github.com/lagden/boilerplate-ws/actions/workflows/nodejs.yml
-[coveralls-img]:   https://coveralls.io/repos/github/lagden/boilerplate-ws/badge.svg?branch=master
-[coveralls]:       https://coveralls.io/github/lagden/boilerplate-ws?branch=master
+[coveralls-img]:   https://coveralls.io/repos/github/lagden/boilerplate-ws/badge.svg?branch=main
+[coveralls]:       https://coveralls.io/github/lagden/boilerplate-ws?branch=main
 
 
 Boilerplate para desenvolvimento de Websocket.
