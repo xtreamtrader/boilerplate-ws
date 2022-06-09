@@ -1,3 +1,5 @@
+/*eslint new-cap: 0*/
+
 import uWS from 'uWebSockets.js'
 import auth from './lib/auth.js'
 import * as debug from './lib/debug.js'

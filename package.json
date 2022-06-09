@@ -23,20 +23,20 @@
     "@tadashi/local-access": "1.0.1",
     "cookie": "0.5.0",
     "debug": "4.3.4",
-    "uWebSockets.js": "https://github.com/uNetworking/uWebSockets.js/archive/v20.9.0.tar.gz"
+    "uWebSockets.js": "https://github.com/uNetworking/uWebSockets.js/archive/v20.10.0.tar.gz"
   },
   "devDependencies": {
-    "@babel/core": "7.17.10",
-    "@babel/eslint-parser": "7.17.0",
+    "@babel/core": "7.18.2",
+    "@babel/eslint-parser": "7.18.2",
     "@tadashi/hex-id": "2.0.0",
-    "ava": "4.2.0",
-    "c8": "7.11.2",
-    "eslint": "8.15.0",
-    "eslint-config-xo": "0.40.0",
+    "ava": "4.3.0",
+    "c8": "7.11.3",
+    "eslint": "8.17.0",
+    "eslint-config-xo": "0.41.0",
     "eslint-plugin-unicorn": "42.0.0",
     "hash-to-port": "1.2.0",
     "p-event": "5.0.1",
-    "ws": "8.6.0"
+    "ws": "8.7.0"
   },
   "babel": {}
 }
