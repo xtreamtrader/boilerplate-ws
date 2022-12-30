@@ -12,7 +12,7 @@ const {
 function _token(req) {
 	const _cookie = cookie.parse(req.getHeader('cookie'))
 	const _qs = querystring.parse(req.getQuery())
-	return _qs?.[AUTH_QS_KEY] ?? _cookie?.[AUTH_COOKIE_KEY] ?? false
+	return _cookie?.[AUTH_COOKIE_KEY] ?? _qs?.[AUTH_QS_KEY] ?? false
 }
 
 async function auth(req) {

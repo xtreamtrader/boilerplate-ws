@@ -12,7 +12,7 @@ export function server(p = port) {
 			if (token) {
 				resolve({
 					token,
-					http: `http://[::1]:${p}`,
+					http: `http://0.0.0.0:${p}`,
 					ws: `ws://0.0.0.0:${p}`,
 				})
 			}

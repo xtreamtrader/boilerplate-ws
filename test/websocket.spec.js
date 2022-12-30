@@ -1,6 +1,7 @@
 import uWS from 'uWebSockets.js'
-import {pEvent, pEventMultiple} from 'p-event'
+import got from 'got'
 import test from 'ava'
+import {pEvent, pEventMultiple} from 'p-event'
 import {server, websocket} from './helper/server.js'
 
 const AUTH_QS_KEY = 'jwt'
@@ -20,6 +21,15 @@ test.after(() => {
 		uWS.us_listen_socket_close(listenSocket)
 		listenSocket = undefined
 	}
+})
+
+test('Nothing to see here!', async t => {
+	const response = await got.get(`${t.context.urls.http}`, {
+		throwHttpErrors: false,
+	})
+
+	// t.is(response.statusCode, 200)
+	t.snapshot(response.body, 'Nothing to see')
 })
 
 test('message', async t => {
