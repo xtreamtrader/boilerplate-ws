@@ -15,34 +15,44 @@ app
 		maxPayloadLength: 16 * 1024 * 1024,
 		idleTimeout: 300,
 		upgrade(res, req, context) {
-			const upgradeAborted = {aborted: false}
-			auth(req)
-				.then(data => {
-					if (upgradeAborted.aborted) {
-						debug.warn('Ouch! Client disconnected before we could upgrade it!')
-						return
-					}
-					res.upgrade(
-						{_data: data},
-						req.getHeader('sec-websocket-key'),
-						req.getHeader('sec-websocket-protocol'),
-						req.getHeader('sec-websocket-extensions'),
-						context,
-					)
-				})
-				.catch(error => {
-					debug.error(error)
-					res.writeStatus('401 Unauthorized')
-					res.end()
-				})
+			const upgradeAborted = {
+				aborted: false,
+			}
 
 			res.onAborted(() => {
 				upgradeAborted.aborted = true
+			})
+
+			auth(req).then(data => {
+				if (upgradeAborted.aborted) {
+					debug.error('Ouch! Client disconnected before we could upgrade it!')
+					throw new Error('426 Upgrade Required')
+				}
+
+				res.upgrade(
+					{
+						_data: data?.payload ?? data,
+						_url: req.getUrl(),
+						_query: req.getQuery(),
+					},
+					req.getHeader('sec-websocket-key'),
+					req.getHeader('sec-websocket-protocol'),
+					req.getHeader('sec-websocket-extensions'),
+					context,
+				)
+			}).catch(error => {
+				debug.error(error.message)
+				res.cork(() => {
+					res
+						.writeStatus(error.message)
+						.end()
+				})
 			})
 		},
 		open(ws) {
 			// Armazena o Websocket na store
 			wsSet.add(ws)
+			debug.info('open ws', ws)
 		},
 		message(ws, message, isBinary) {
 			try {

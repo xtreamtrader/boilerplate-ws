@@ -4,22 +4,20 @@ import test from 'ava'
 import {pEvent, pEventMultiple} from 'p-event'
 import {server, websocket} from './helper/server.js'
 
+const AUTH_HEADER_KEY = 'Bearer'
 const AUTH_QS_KEY = 'jwt'
 const token_user_a = 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMiwiaWQiOiI2MjcxYmFiNWY2N2U5Y2NkNDkwMzNhYmIifQ.hmoUE_vayFKMKGz0v9iPLfIuneklDkL_qnD2n5QVKrYXmUwUqoJlSKGgafXIQGlyFxNZTucE8z8qdSRHZ-IXRQ'
 const token_user_b = 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFsYmVydG8gUm9iZXJ0byIsImFkbWluIjp0cnVlLCJpYXQiOjE1MTYyMzkwMjIsImlkIjoiNjI3MWJhYjVmNjdlOWNjZDQ5MDMzYWJjIn0.CEoDPZn3IRrP4Cob6V_C41FxiqZoNkI6maN6c9tvfMrzw8gB5WWxBSiGdUWJ9HF4drPJANgEvfHKL8C0gNeuxA'
 
-let listenSocket
-
 test.before(async t => {
 	const {token, http, ws} = await server()
-	listenSocket = token
-	t.context.urls = {http, ws}
+	t.context.urls = {http, ws, token}
 })
 
-test.after(() => {
-	if (listenSocket) {
-		uWS.us_listen_socket_close(listenSocket)
-		listenSocket = undefined
+test.after(t => {
+	if (t.context.urls.token) {
+		uWS.us_listen_socket_close(t.context.urls.token)
+		t.context.urls.token = undefined
 	}
 })
 
@@ -91,6 +89,22 @@ test('cookie', async t => {
 
 	await pEvent(ws, 'open')
 	t.pass('conectado via cookie')
+
+	ws.close(1000)
+	await pEvent(ws, 'close')
+})
+
+test('authorization', async t => {
+	const url = t.context.urls.ws
+	const ws = websocket(url, {
+		headers: {
+			Authorization: `${AUTH_HEADER_KEY} ${token_user_a}`,
+			Host: '127.0.0.1',
+		},
+	})
+
+	await pEvent(ws, 'open')
+	t.pass('conectado via authorization')
 
 	ws.close(1000)
 	await pEvent(ws, 'close')
