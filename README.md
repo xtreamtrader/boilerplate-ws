@@ -13,10 +13,7 @@ Boilerplate para desenvolvimento de Websocket.
 
 - [Instalação](#instalação)
 - [Como utilizar](#como-utilizar)
-    - [watch](#watch)
-        - [entr](#entr)
-        - [nodemon](#nodemon)
-    - [teste](#teste)
+    - [Teste](#teste)
 - [Imagem](#imagem)
 - [Deploy](#deploy)
 - [Exemplo](#exemplo)
@@ -26,17 +23,7 @@ Boilerplate para desenvolvimento de Websocket.
 
 ## Instalação
 
-⚠️ **Importante**
-
-Instale o [Yarn](https://yarnpkg.com/getting-started/install).
-
-```
-npm install -g yarn
-```
-
----
-
-Use o [degit](https://github.com/tiged/tiged) para fazer o `scaffolding` do projeto.
+Use o [tiged](https://github.com/tiged/tiged) para fazer o `scaffolding` do projeto.
 
 Existem algumas dependências.
 
@@ -51,8 +38,8 @@ Existem algumas dependências.
 npx tiged lagden/boilerplate-ws#main projeto
 cd projeto
 npx tiged lagden/boilerplate-bin/files#main bin --force
-npx tiged lagden/boilerplate-eslint/files/backend/.eslintrc.yml#main .eslintrc.yml --force
-npx tiged lagden/boilerplate-envs/files#main . --force
+npx tiged lagden/boilerplate-eslint/files/backend#main . --force
+npx tiged lagden/boilerplate-envs/files#main .conf --force
 npx tiged lagden/boilerplate-docker-nodejs/files#main . --force
 ```
 
@@ -62,7 +49,7 @@ npx tiged lagden/boilerplate-docker-nodejs/files#main . --force
 Após finalizado o `scaffolding` do projeto, instale os pacotes.
 
 ```shell
-bin/node/zera -y
+bin/node/zera
 ```
 
 Feito isso, o projeto está pronto para funcionar.
@@ -81,49 +68,15 @@ bin/docker/start
 
 ⚠️ **Ressalvas**
 
-No **docker**, caso seja instalado um novo pacote, é necessário fazer o `build` da imagem novamente.  
-Pare o container (`bin/docker/stop` ou `control + c`) e rode novamente passando o parâmetro `-b`:
+No **docker**, caso seja adicionado um novo pacote ao projeto, é necessário fazer o `build` da imagem novamente.  
+Pare o stack (`bin/docker/stop` ou `control + c`) e rode novamente passando o parâmetro `-b`:
 
 ```shell
 bin/docker/start -b
 ```
 
 
-### watch
-
-O **watch** reinicia a aplicação caso ocorra alguma alteração.  
-Rodando via **docker** isso ocorre por padrão, mas **local** é necessário fazer algumas instalações e configurações.
-
-
-#### entr
-
-Se estiver rodando em **BSD** ou **Mac OS** ou **Linux**, basta instalar o [entr](https://github.com/eradman/entr) e executar:
-
-```shell
-bin/local/start -w
-```
-
-
-#### nodemon
-
-Como o [entr](https://github.com/eradman/entr) não roda no **Windows**, existe uma solução alternativa.
-
-Utilize o arquivo `.env-local` na raiz do projeto e insira o código abaixo:
-
-```
-WATCH_LOCAL_CMD="yarn dlx nodemon -e js,json --watch server --exec npm start"
-```
-
----
-
-Então, execute o comando:
-
-```shell
-bin/local/start -w
-```
-
-
-### teste
+### Teste
 
 Para executar os testes.
 
@@ -149,7 +102,7 @@ echo 'username' > .registry-user
 echo 'password' > .registry-passwd
 ```
 
-Verifique as suas variáveis de ambiente `.env-*`.  
+Verifique as suas variáveis de ambiente `.conf/*.sh`.  
 E para fazer o `push` da imagem de sua aplicação, execute:
 
 ```shell
