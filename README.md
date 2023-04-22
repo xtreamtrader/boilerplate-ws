@@ -9,39 +9,33 @@
 [coveralls]:       https://coveralls.io/github/lagden/boilerplate-ws?branch=main
 
 
-Boilerplate para desenvolvimento de Websocket.
+Boilerplate para desenvolvimento de uma aplicação utilizando Svelte.
 
 - [Instalação](#instalação)
 - [Como utilizar](#como-utilizar)
     - [Teste](#teste)
-- [Imagem](#imagem)
-- [Deploy](#deploy)
-- [Exemplo](#exemplo)
-- [Middlewares](#middlewares)
+    - [Sprites](#sprites)
+- [Imagem (docker)](#imagem-docker)
+- [Deploy (docker)](#deploy-docker)
 - [License](#license)
 
 
 ## Instalação
 
-Use o [tiged](https://github.com/tiged/tiged) para fazer o `scaffolding` do projeto.
+Utilize `@tadashi/boilerplate-create` para iniciar o projeto.
 
-Existem algumas dependências.
-
-- [bin](https://github.com/lagden/boilerplate-bin)
-- [envs](https://github.com/lagden/boilerplate-envs)
-- [docker](https://github.com/lagden/boilerplate-docker-nodejs) (opcional)
-
-
-**Exemplo:**
-
-```shell
-npx tiged lagden/boilerplate-ws#main projeto
-cd projeto
-npx tiged lagden/boilerplate-bin/files#main bin --force
-npx tiged lagden/boilerplate-eslint/files/backend#main . --force
-npx tiged lagden/boilerplate-envs/files#main .conf --force
-npx tiged lagden/boilerplate-docker-nodejs/files#main . --force
 ```
+npm i -g @tadashi/boilerplate-create
+boilerplate-create
+```
+
+ou
+
+```
+npx --yes @tadashi/boilerplate-create
+```
+
+E siga as instruções do prompt.
 
 
 ## Como utilizar
@@ -49,7 +43,7 @@ npx tiged lagden/boilerplate-docker-nodejs/files#main . --force
 Após finalizado o `scaffolding` do projeto, instale os pacotes.
 
 ```shell
-bin/node/zera
+bin/node/zera -m pnpm
 ```
 
 Feito isso, o projeto está pronto para funcionar.
@@ -68,8 +62,8 @@ bin/docker/start
 
 ⚠️ **Ressalvas**
 
-No **docker**, caso seja adicionado um novo pacote ao projeto, é necessário fazer o `build` da imagem novamente.  
-Pare o stack (`bin/docker/stop` ou `control + c`) e rode novamente passando o parâmetro `-b`:
+Via **Docker**, caso seja instalado um novo pacote, é necessário fazer o `build` da imagem novamente.  
+Pare o container (`bin/docker/stop` ou `control + c`) e rode novamente passando o parâmetro `-b`:
 
 ```shell
 bin/docker/start -b
@@ -140,7 +134,7 @@ npm i -g wscat
 
 Abra um shell e execute:
 
-```shell
+```
 wscat -c 'ws://[::1]:5000/?jwt=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMiwiaWQiOiI2MjcxYmFiNWY2N2U5Y2NkNDkwMzNhYmIifQ.hmoUE_vayFKMKGz0v9iPLfIuneklDkL_qnD2n5QVKrYXmUwUqoJlSKGgafXIQGlyFxNZTucE8z8qdSRHZ-IXRQ'
 Connected (press CTRL+C to quit)
 > {"action": "message", "message": "Olá"}
@@ -148,7 +142,7 @@ Connected (press CTRL+C to quit)
 
 Em outro shell:
 
-```shell
+```
 wscat -c 'ws://[::1]:5000/?jwt=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFsYmVydG8gUm9iZXJ0byIsImFkbWluIjp0cnVlLCJpYXQiOjE1MTYyMzkwMjIsImlkIjoiNjI3MWJhYjVmNjdlOWNjZDQ5MDMzYWJjIn0.CEoDPZn3IRrP4Cob6V_C41FxiqZoNkI6maN6c9tvfMrzw8gB5WWxBSiGdUWJ9HF4drPJANgEvfHKL8C0gNeuxA'
 Connected (press CTRL+C to quit)
 < {"action":"message","message":"Olá"}
