@@ -9,14 +9,16 @@
 [coveralls]:       https://coveralls.io/github/lagden/boilerplate-ws?branch=main
 
 
-Boilerplate para desenvolvimento de uma aplicação utilizando Svelte.
+Boilerplate para desenvolvimento de uma aplicação.
 
 - [Instalação](#instalação)
 - [Como utilizar](#como-utilizar)
-    - [Teste](#teste)
-    - [Sprites](#sprites)
-- [Imagem (docker)](#imagem-docker)
-- [Deploy (docker)](#deploy-docker)
+    - [watch](#watch)
+    - [teste](#teste)
+- [Imagem](#imagem)
+- [Deploy](#deploy)
+- [Exemplo](#exemplo)
+- [Middlewares](#middlewares)
 - [License](#license)
 
 
@@ -43,7 +45,8 @@ E siga as instruções do prompt.
 Após finalizado o `scaffolding` do projeto, instale os pacotes.
 
 ```shell
-bin/node/zera -m pnpm
+bin/node/pkg.js
+bin/node/zera -m npm
 ```
 
 Feito isso, o projeto está pronto para funcionar.
@@ -62,7 +65,7 @@ bin/docker/start
 
 ⚠️ **Ressalvas**
 
-Via **Docker**, caso seja instalado um novo pacote, é necessário fazer o `build` da imagem novamente.  
+No **docker**, caso seja instalado um novo pacote, é necessário fazer o `build` da imagem novamente.  
 Pare o container (`bin/docker/stop` ou `control + c`) e rode novamente passando o parâmetro `-b`:
 
 ```shell
@@ -70,7 +73,17 @@ bin/docker/start -b
 ```
 
 
-### Teste
+### watch
+
+O **watch** reinicia a aplicação caso ocorra alguma alteração.  
+Rodando via **docker** isso ocorre por padrão, mas **local** é necessário fazer algumas instalações e configurações.
+
+```shell
+bin/local/start -w
+```
+
+
+### teste
 
 Para executar os testes.
 
@@ -96,7 +109,7 @@ echo 'username' > .registry-user
 echo 'password' > .registry-passwd
 ```
 
-Verifique as suas variáveis de ambiente `.conf/*.sh`.  
+Verifique as suas variáveis de ambiente `.env-*`.  
 E para fazer o `push` da imagem de sua aplicação, execute:
 
 ```shell
@@ -148,6 +161,11 @@ Connected (press CTRL+C to quit)
 < {"action":"message","message":"Olá"}
 > {"action": "message", "message": "Mundo"}
 ```
+
+
+## Donate ❤️
+
+- BTC: bc1q7famhuj5f25n6qvlm3sssnymk2qpxrfwpyq7g4
 
 
 ## License
