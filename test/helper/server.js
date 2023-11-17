@@ -3,17 +3,18 @@ import hexId from '@tadashi/hex-id'
 import toPort from 'hash-to-port'
 import app from '../../server/app.js'
 
+const hostname = '127.0.0.1'
 const port = toPort(hexId())
 
-export function server(p = port) {
+export function run(p = port) {
 	return new Promise(resolve => {
 		// app.listen('::', Number(p), token => {
-		app.listen('0.0.0.0', Number(p), token => {
+		app.listen(hostname, Number(p), token => {
 			if (token) {
 				resolve({
 					token,
-					http: `http://0.0.0.0:${p}`,
-					ws: `ws://0.0.0.0:${p}`,
+					http: `http://${hostname}:${p}`,
+					ws: `ws://${hostname}:${p}`,
 				})
 			}
 		})

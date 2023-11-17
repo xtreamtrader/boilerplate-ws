@@ -1,26 +1,23 @@
 # Boilerplate Websocket Server
 
-[![Build Status][ci-img]][ci]
-[![Coverage Status][coveralls-img]][coveralls]
+[![Build Status][ci-img]][ci] [![Coverage Status][coveralls-img]][coveralls]
 
-[ci-img]:          https://github.com/lagden/boilerplate-ws/actions/workflows/nodejs.yml/badge.svg
-[ci]:              https://github.com/lagden/boilerplate-ws/actions/workflows/nodejs.yml
-[coveralls-img]:   https://coveralls.io/repos/github/lagden/boilerplate-ws/badge.svg?branch=main
-[coveralls]:       https://coveralls.io/github/lagden/boilerplate-ws?branch=main
-
+[ci-img]: https://github.com/lagden/boilerplate-ws/actions/workflows/nodejs.yml/badge.svg
+[ci]: https://github.com/lagden/boilerplate-ws/actions/workflows/nodejs.yml
+[coveralls-img]: https://coveralls.io/repos/github/lagden/boilerplate-ws/badge.svg?branch=main
+[coveralls]: https://coveralls.io/github/lagden/boilerplate-ws?branch=main
 
 Boilerplate para desenvolvimento de uma aplicação.
 
 - [Instalação](#instalação)
 - [Como utilizar](#como-utilizar)
-    - [watch](#watch)
-    - [teste](#teste)
+  - [watch](#watch)
+  - [teste](#teste)
 - [Imagem](#imagem)
 - [Deploy](#deploy)
 - [Exemplo](#exemplo)
 - [Middlewares](#middlewares)
 - [License](#license)
-
 
 ## Instalação
 
@@ -38,7 +35,6 @@ npx --yes @tadashi/boilerplate-create
 ```
 
 E siga as instruções do prompt.
-
 
 ## Como utilizar
 
@@ -72,7 +68,6 @@ Pare o container (`bin/docker/stop` ou `control + c`) e rode novamente passando 
 bin/docker/start -b
 ```
 
-
 ### watch
 
 O **watch** reinicia a aplicação caso ocorra alguma alteração.  
@@ -81,7 +76,6 @@ Rodando via **docker** isso ocorre por padrão, mas **local** é necessário faz
 ```shell
 bin/local/start -w
 ```
-
 
 ### teste
 
@@ -99,7 +93,6 @@ bin/local/test
 bin/docker/test
 ```
 
-
 ## Imagem
 
 Crie os arquivos de usuário e senha do **registry** que serão utilizados para fazer o `push` da imagem.
@@ -115,7 +108,6 @@ E para fazer o `push` da imagem de sua aplicação, execute:
 ```shell
 bin/docker/image -e production
 ```
-
 
 ## Deploy
 
@@ -136,7 +128,6 @@ O fluxo do sistema de **deploy** é simples:
 bin/docker/deploy -e production
 ```
 
-
 ## Exemplo
 
 Utilize o [wscat](https://www.npmjs.com/package/wscat).
@@ -148,25 +139,25 @@ npm i -g wscat
 Abra um shell e execute:
 
 ```
-wscat -c 'ws://[::1]:5000/?jwt=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMiwiaWQiOiI2MjcxYmFiNWY2N2U5Y2NkNDkwMzNhYmIifQ.hmoUE_vayFKMKGz0v9iPLfIuneklDkL_qnD2n5QVKrYXmUwUqoJlSKGgafXIQGlyFxNZTucE8z8qdSRHZ-IXRQ'
+wscat -c 'ws://[::1]:5001/?token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMiwiaWQiOiI2MjcxYmFiNWY2N2U5Y2NkNDkwMzNhYmIifQ.hmoUE_vayFKMKGz0v9iPLfIuneklDkL_qnD2n5QVKrYXmUwUqoJlSKGgafXIQGlyFxNZTucE8z8qdSRHZ-IXRQ'
 Connected (press CTRL+C to quit)
-> {"action": "message", "message": "Olá"}
+> {"action": "direct", "message": "Olá", "to": "6271bab5f67e9ccd49033abc"}
+> {"action": "me", "message": "Espelho, espelho meu!!"}
+> {"action": "broadcast", "message": "Olá pessoal!"}
 ```
 
 Em outro shell:
 
 ```
-wscat -c 'ws://[::1]:5000/?jwt=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFsYmVydG8gUm9iZXJ0byIsImFkbWluIjp0cnVlLCJpYXQiOjE1MTYyMzkwMjIsImlkIjoiNjI3MWJhYjVmNjdlOWNjZDQ5MDMzYWJjIn0.CEoDPZn3IRrP4Cob6V_C41FxiqZoNkI6maN6c9tvfMrzw8gB5WWxBSiGdUWJ9HF4drPJANgEvfHKL8C0gNeuxA'
+wscat -c 'ws://[::1]:5001/?token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFsYmVydG8gUm9iZXJ0byIsImFkbWluIjp0cnVlLCJpYXQiOjE1MTYyMzkwMjIsImlkIjoiNjI3MWJhYjVmNjdlOWNjZDQ5MDMzYWJjIn0.CEoDPZn3IRrP4Cob6V_C41FxiqZoNkI6maN6c9tvfMrzw8gB5WWxBSiGdUWJ9HF4drPJANgEvfHKL8C0gNeuxA'
 Connected (press CTRL+C to quit)
-< {"action":"message","message":"Olá"}
-> {"action": "message", "message": "Mundo"}
+< {"action": "direct", "message": "Bãooo?", "to": "6271bab5f67e9ccd49033abb"}
+> {"action": "broadcast", "message": "ihhhhulll!!!"}
 ```
-
 
 ## Donate ❤️
 
 - BTC: bc1q7famhuj5f25n6qvlm3sssnymk2qpxrfwpyq7g4
-
 
 ## License
 
