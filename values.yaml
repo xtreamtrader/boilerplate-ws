@@ -9,11 +9,11 @@ resources:
 
 ingress:
   enabled: true
-  domain: "boilerplate.io"
-  host: "websocket"
-  path: "/"
+  domain: 'boilerplate.io'
+  host: 'websocket'
+  path: '/'
   annotations:
-    nginx.ingress.kubernetes.io/proxy-body-size: "15m"
+    nginx.ingress.kubernetes.io/proxy-body-size: '15m'
 
 autoscaling:
   enabled: true
@@ -25,14 +25,14 @@ autoscaling:
 extraEnv:
   # General
   - name: APP_NS
-    value: "websocket"
+    value: 'websocket'
   - name: NODE_ENV
-    value: "production"
+    value: 'production'
   - name: TZ
-    value: "America/Sao_Paulo"
+    value: 'America/Sao_Paulo'
 
   # Debug
   - name: DEBUG_PREFIX
-    value: "websocket"
+    value: 'websocket'
   - name: DEBUG
-    value: "websocket:*"
+    value: 'websocket:*'

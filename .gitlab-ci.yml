@@ -1,6 +1,6 @@
 variables:
   KUBE_NAMESPACE: boilerplate
-  HELM_RELEASE_NAME: websocket
+  HELM_RELEASE_NAME: rest
 
 include:
   - project: 'inovacao/devops/template-cicd'

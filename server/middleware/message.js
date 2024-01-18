@@ -1,9 +1,21 @@
 import {stringToUint8Array, uint8ArrayToString} from 'uint8array-extras'
 
-const actions = new Set(['broadcast', 'direct', 'me'])
+// prettier-ignore
+const actions = new Set([
+	'broadcast',
+	'direct',
+	'me',
+])
 
 function prepare(props) {
-	const {action = 'direct', message = '', from, to} = props
+	// prettier-ignore
+	const {
+		action = 'direct',
+		message = '',
+		from,
+		to,
+	} = props
+
 	return stringToUint8Array(
 		JSON.stringify({
 			action,

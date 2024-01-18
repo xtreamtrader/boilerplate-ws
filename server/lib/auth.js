@@ -6,6 +6,7 @@ import cookie from 'cookie'
 
 // prettier-ignore
 const {
+	APP_ENV = 'test',
 	AUTH_KEY = 'Bearer',
 	COOKIE_KEY = 'token',
 	QS_KEY = 'token',
@@ -28,7 +29,7 @@ function getTokens(props) {
 
 export default async function auth(props) {
 	// remove this - only for connection abort simulation on unit test
-	if (props.xslow) {
+	if (props.xslow && APP_ENV === 'test') {
 		await setTimeout(2000)
 	}
 

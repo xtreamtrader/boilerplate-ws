@@ -24,17 +24,19 @@ const {
 
 app.listen('::', Number(port), token => {
 	if (token) {
-		debug.info('Server listening')
-		debug.info('----------------')
-		debug.info(`Local:    ${local}`)
-		debug.info(`Network:  ${network}`)
-		debug.info('----------------')
-		debug.info(`Local:    ${local_ws}`)
-		debug.info(`Network:  ${network_ws}`)
-		debug.info('----------------')
-		debug.info(`Version:  ${VERSION}`)
+		debug.info(`
+Server listening
+----------------
+Local:    ${local}
+Network:  ${network}
+----------------
+Local:    ${local_ws}
+Network:  ${network_ws}
+----------------
+Version:  ${VERSION}`)
 	} else {
-		debug.error('Failed to listen to port!')
-		debug.error(`Local:    ${port}`)
+		debug.error(`
+Failed to listen to port!
+Local:    ${port}`)
 	}
 })

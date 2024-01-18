@@ -3,7 +3,6 @@ import upgrade from './middleware/upgrade.js'
 import open from './middleware/open.js'
 import message from './middleware/message.js'
 import close from './middleware/close.js'
-// import * as debug from '@tadashi/debug'
 
 // Server
 const app = uWS.App()
@@ -15,9 +14,6 @@ app.ws('/*', {
 	open,
 	message,
 	close,
-	// drain(ws) {
-	// 	debug.info('ws | drain', ws?._data?.name, ws.getBufferedAmount())
-	// },
 }).any('/*', res => {
 	res.end('Nothing to see here!')
 })
